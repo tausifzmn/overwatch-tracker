@@ -30,3 +30,6 @@ Thumbs.db
 # Environment
 .env
 .env.local
+DEVELOPMENT.md
+PHASE_1.md
+plan.md
