@@ -12,7 +12,10 @@
   },
   "tauri": {
     "allowlist": {
-      "all": false
+      "all": false,
+      "window": {
+        "startDragging": true
+      }
     },
     "bundle": {
       "active": true,
@@ -56,13 +59,13 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 520,
         "resizable": false,
         "title": "Overwatch Tracker",
         "transparent": true,
         "decorations": false,
         "alwaysOnTop": true,
-        "width": 800
+        "width": 460
       }
     ]
   }

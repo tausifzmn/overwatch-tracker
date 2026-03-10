@@ -2,35 +2,35 @@
 
 ## Running the Dev Environment
 
-The Overwatch Tracker uses **two separate terminals** during development:
-
-### Terminal 1: Start Vite (Frontend Dev Server)
-```powershell
-npm run vite-dev
-```
-Output should show:
-```
-VITE v4.5.14 ready in 295 ms
-➜  Local:   http://localhost:5173/
-```
-
-### Terminal 2: Start Tauri (Desktop App)
 ```powershell
 npx tauri dev
 ```
-This will launch the overlay window and automatically load the React app from Terminal 1's dev server.
+Use this single command from `overwatch-tracker/` to run the app in dev mode.
 
-## Why Two Terminals?
+## Context (What Was Causing Issues)
 
-- **Vite** needs to start and listen on port 5173 **before** Tauri launches the window
-- Running them together in `npm run dev` causes timing issues (404 errors)
-- This two-terminal setup is the standard Tauri development workflow
+Earlier 404 errors came from startup/path timing in `beforeDevCommand`, where Tauri opened before the dev server path was ready.
+
+## Troubleshooting (One Line)
+
+If the window is blank or shows 404, stop all terminals and run `npx tauri dev` again from `overwatch-tracker/`.
+
+## Icon Setup (Important)
+
+Tauri icons/resources must be generated correctly or Rust/Tauri build steps can fail.
+
+Run this from `overwatch-tracker/` to regenerate Tauri files and icons with force init:
+
+```powershell
+npx tauri init --ci --force
+```
+
+This recreates valid assets in `src-tauri/icons/` (including `icon.ico` and png sizes) and resets Tauri config files.
 
 ## Testing the Overlay
 
-1. Keep both terminals running
-2. Use **Alt+O** to toggle overlay visibility
-3. Edit React components in `src/` → Vite hot-reloads (F5 to refresh in Tauri window)
+1. Use `Alt+O` to toggle overlay visibility.
+2. Edit React files in `src/` and verify the overlay updates.
 
 ## Building for Production
 

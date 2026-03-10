@@ -32,27 +32,79 @@ body {
   height: 100%;
   background: transparent;
   pointer-events: none;
+}
 
-  &.hidden {
-    display: none;
-  }
+.app.hidden {
+  display: none;
 }
 
 .overlay-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 420px;
+  position: relative;
+  width: 100%;
+  height: 100%;
   background: rgba(20, 20, 30, 0.95);
   border: 1px solid rgba(100, 200, 255, 0.3);
   border-radius: 12px;
-  padding: 16px;
+  padding: 10px 12px 12px;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   pointer-events: auto;
-  max-height: 90vh;
   overflow-y: auto;
   font-size: 13px;
+}
+
+.drag-handle {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(100, 200, 255, 0.25);
+  cursor: grab;
+  user-select: none;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.drag-label {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #9ecff0;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  min-height: 20px;
+}
+
+.status-badge {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #b8d6eb;
+  background: rgba(100, 200, 255, 0.12);
+  border: 1px solid rgba(100, 200, 255, 0.25);
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+
+.status-loading {
+  font-size: 11px;
+  color: #8ed1ff;
+}
+
+.status-error {
+  font-size: 11px;
+  color: #ff9d9d;
 }
 
 .stats-wrapper {
@@ -94,11 +146,19 @@ body {
   border-radius: 6px;
   padding: 8px;
   transition: all 0.2s ease;
+}
 
-  &:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(100, 200, 255, 0.4);
-  }
+.player-card.enemy {
+  border-color: rgba(255, 107, 107, 0.25);
+}
+
+.player-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(100, 200, 255, 0.4);
+}
+
+.player-card.enemy:hover {
+  border-color: rgba(255, 107, 107, 0.45);
 }
 
 .player-name {
@@ -125,12 +185,16 @@ body {
   white-space: nowrap;
 }
 
+.player-card.enemy .stat {
+  background: rgba(255, 107, 107, 0.12);
+}
+
 .settings-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: rgba(100, 200, 255, 0.2);
   border: 2px solid rgba(100, 200, 255, 0.4);
@@ -138,14 +202,14 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
   pointer-events: auto;
+}
 
-  &:hover {
-    background: rgba(100, 200, 255, 0.3);
-    border-color: rgba(100, 200, 255, 0.6);
-    transform: scale(1.1);
-  }
+.settings-btn:hover {
+  background: rgba(100, 200, 255, 0.3);
+  border-color: rgba(100, 200, 255, 0.6);
+  transform: scale(1.1);
+}
 
-  &:active {
-    transform: scale(0.95);
-  }
+.settings-btn:active {
+  transform: scale(0.95);
 }
